@@ -14,10 +14,6 @@ form {
 }
 
 /* class selector */
-.container {
-  width: 60%;
-}
-
 .header-logo {
   font-size: 20px;
 }
@@ -30,13 +26,8 @@ form {
   object-fit: cover;
   width: 1000px;
   height: 200px;
-  opacity: 80%;
-  filter: saturate(130%);
+  filter: saturate(70%);
   filter: brightness(70%);
-}
-
-.margin-0 {
-  margin: 0 auto;
 }
 
 .margin-bot-thirty {
@@ -48,18 +39,6 @@ form {
   border-radius: 25px;
   height: 35px;
   width: 70%;
-}
-
-.height-full {
-  height: 100%;
-}
-
-.width-full {
-  width: 100%;
-}
-
-.text-center {
-  text-align: center;
 }
 
 .text-white {
