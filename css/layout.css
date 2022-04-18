@@ -55,10 +55,6 @@
 
 @media only screen and (max-width: 768px) {
   .container {
-    width: 95%;
-  }
-
-  img.hero-img {
-    height: 250px;
+    width: 90%;
   }
 }
