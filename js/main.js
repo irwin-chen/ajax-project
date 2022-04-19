@@ -53,3 +53,9 @@ function recipePreview(index) {
   $recipePreviewEntry.append($recipePreviewCard);
   $recipeContainer.append($recipePreviewEntry);
 }
+
+$recipeContainer.addEventListener('click', function (event) {
+  if (event.target.matches('button')) {
+    return null;
+  }
+});
