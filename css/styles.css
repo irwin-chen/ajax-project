@@ -84,6 +84,9 @@ input {
   font-size: 20px;
   font-weight: 300;
   margin: 10px 0;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .info-button {
