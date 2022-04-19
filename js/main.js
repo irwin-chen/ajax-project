@@ -5,6 +5,12 @@ var query;
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
+
+  if ($recipeContainer.firstElementChild) {
+    while ($recipeContainer.hasChildNodes()) {
+      $recipeContainer.children[0].remove();
+    }
+  }
   query = $searchBar.value;
   parseQuery();
   $form.reset();
@@ -31,7 +37,7 @@ function serverRequest() {
 
 function recipePreview(index) {
   var $recipePreviewEntry = document.createElement('div');
-  $recipePreviewEntry.className = 'column-third margin-bot-fifteen';
+  $recipePreviewEntry.className = 'column-third margin-bot-fifteen recipe-preview-entry';
 
   var $recipePreviewCard = document.createElement('div');
   $recipePreviewCard.className = 'row flex-column align-center';
