@@ -1,9 +1,16 @@
 var $form = document.querySelector('form');
 var $searchBar = document.querySelector('input');
+var $recipeContainer = document.querySelector('.recipe-container');
 var query;
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
+
+  if ($recipeContainer.firstElementChild) {
+    while ($recipeContainer.hasChildNodes()) {
+      $recipeContainer.children[0].remove();
+    }
+  }
   query = $searchBar.value;
   parseQuery();
   $form.reset();
@@ -21,6 +28,40 @@ function serverRequest() {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     query = xhr.response;
+    for (var queryIndex = 0; queryIndex < query.length; queryIndex++) {
+      recipePreview(queryIndex);
+    }
   });
   xhr.send();
 }
+
+function recipePreview(index) {
+  var $recipePreviewEntry = document.createElement('div');
+  $recipePreviewEntry.className = 'column-third margin-bot-fifteen recipe-preview-entry';
+
+  var $recipePreviewCard = document.createElement('div');
+  $recipePreviewCard.className = 'row flex-column align-center';
+
+  var $recipeImage = document.createElement('img');
+  $recipeImage.src = query[index].image;
+  $recipeImage.className = 'recipe-img';
+
+  var $recipeName = document.createElement('p');
+  $recipeName.textContent = query[index].title;
+  $recipeName.className = 'recipe-name';
+
+  var $recipeInfoButton = document.createElement('button');
+  $recipeInfoButton.className = 'info-button text-white';
+  $recipeInfoButton.textContent = 'READ MORE';
+  $recipeInfoButton.setAttribute('recipeId', query[index].id);
+
+  $recipePreviewCard.append($recipeImage, $recipeName, $recipeInfoButton);
+  $recipePreviewEntry.append($recipePreviewCard);
+  $recipeContainer.append($recipePreviewEntry);
+}
+
+$recipeContainer.addEventListener('click', function (event) {
+  if (event.target.matches('button')) {
+    return null;
+  }
+});
