@@ -1,0 +1,60 @@
+/* style selector */
+
+/* class selector */
+.row {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.column-third {
+  width: calc(100% / 3);
+}
+
+.height-full {
+  height: 100%;
+}
+
+.width-full {
+  width: 100%;
+}
+
+.container {
+  width: 60%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.margin-0 {
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+}
