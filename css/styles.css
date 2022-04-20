@@ -39,7 +39,7 @@ input {
   margin-bottom: 30px;
 }
 
-.margin-bot-fifteen {
+.margin-bot-media {
   margin-bottom: 15px;
 }
 
@@ -140,7 +140,7 @@ input {
 }
 
 @media only screen and (max-width: 600px) {
-  .margin-bot-fifteen {
+  .margin-bot-media {
     margin-bottom: 25px;
   }
 }

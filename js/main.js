@@ -36,7 +36,7 @@ function parseQuery() {
 
 function recipePreview(index) {
   var $recipePreviewEntry = document.createElement('div');
-  $recipePreviewEntry.className = 'column-third margin-bot-fifteen recipe-preview-entry';
+  $recipePreviewEntry.className = 'column-third margin-bot-media recipe-preview-entry';
 
   var $recipePreviewCard = document.createElement('div');
   $recipePreviewCard.className = 'row flex-column align-center';
@@ -72,7 +72,7 @@ function recipeWindows() {
   $windowsDiv.append($columnOne, $columnTwo);
 
   var $recipeImage = document.createElement('img');
-  $recipeImage.className = 'recipe-img margin-bot-fifteen';
+  $recipeImage.className = 'recipe-img margin-bot-media';
   $recipeImage.src = recipe.image;
 
   var $ingredientsBlock = document.createElement('div');
@@ -147,7 +147,7 @@ function recipeMobile() {
   $recipeCard.append($mediaDiv);
 
   var $recipeImage = document.createElement('img');
-  $recipeImage.className = 'margin-bot-fifteen';
+  $recipeImage.className = 'margin-bot-media';
   $recipeImage.src = recipe.image;
 
   var $titleContainer = document.createElement('div');
