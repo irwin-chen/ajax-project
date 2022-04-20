@@ -103,17 +103,12 @@ input {
   padding-bottom: 10px;
 }
 
-.recipe-card-img {
-  display: inline-block;
-  text-align: center;
-}
-
 .ingredients-block {
   background-color: #f5f5f5;
   width: 95%;
 }
 
-.ingredients-title {
+.divider-title {
   font-weight: bolder;
   padding-left: 5%;
   padding-top: 15px;
@@ -131,6 +126,7 @@ input {
   padding-left: 5%;
   line-height: 1.5;
   padding-bottom: 15px;
+  font-size: 14px;
 }
 
 .recipe-title {
@@ -152,5 +148,25 @@ input {
 @media only screen and (max-width: 768px) {
   .hero-img {
     height: 250px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .windows-recipe-card {
+    display: none;
+  }
+
+  .ingredients-block {
+    width: 100%;
+  }
+
+  .title-container {
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .media-recipe-card {
+    display: none;
   }
 }
