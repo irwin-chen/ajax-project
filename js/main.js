@@ -4,6 +4,8 @@ var $recipeContainer = document.querySelector('.recipe-container');
 var $searchView = document.querySelector('.home-page');
 var $recipeCard = document.querySelector('.recipe-card');
 var $addButton = document.querySelector('.add-button');
+var $savedRecipesView = document.querySelector('.saved-recipes-button');
+var $divText = document.querySelector('.div-text');
 var add = null;
 var query = null;
 var recipeId = null;
@@ -26,11 +28,17 @@ $recipeContainer.addEventListener('click', function (event) {
   if (event.target.matches('button')) {
     recipeId = event.target.getAttribute('recipeid');
   }
+
+  for (var i = 0; i < data.savedRecipes.length; i++) {
+    if (data.savedRecipes[i].id === recipeId) {
+      recipe = data.savedRecipe[i];
+    }
+  }
   recipeRequest();
   $searchView.className = 'hidden';
   $addButton.classList.remove('hidden');
 
-  for (var i = 0; i < data.savedRecipes.length; i++) {
+  for (i = 0; i < data.savedRecipes.length; i++) {
     if (data.savedRecipes[i].id === parseInt(recipeId)) {
       add = true;
       addButtonToggle();
@@ -67,6 +75,20 @@ $addButton.addEventListener('click', function () {
     addButtonToggle();
   }
 });
+
+$savedRecipesView.addEventListener('click', views);
+
+function views(event) {
+  if (event.target.matches('a')) {
+    $divText.textContent = 'Saved';
+    query = data.savedRecipes;
+    for (var i = 0; i < query.length; i++) {
+      recipePreview(i);
+    }
+  } else {
+    $divText.textContent = 'Search';
+  }
+}
 
 function addButtonToggle() {
   if (add) {
