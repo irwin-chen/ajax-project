@@ -39,7 +39,7 @@ input {
   margin-bottom: 30px;
 }
 
-.margin-bot-fifteen {
+.margin-bot-media {
   margin-bottom: 15px;
 }
 
@@ -103,8 +103,44 @@ input {
   padding-bottom: 10px;
 }
 
+.ingredients-block {
+  background-color: #f5f5f5;
+  width: 95%;
+}
+
+.divider-title {
+  font-weight: bolder;
+  padding-left: 5%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.divider {
+  background-color: #e5e5e5;
+  height: 3px;
+  width: 90%;
+}
+
+.ingredients-list {
+  list-style: none;
+  padding-left: 5%;
+  line-height: 1.5;
+  padding-bottom: 15px;
+  font-size: 14px;
+}
+
+.recipe-title {
+  font-weight: bold;
+  font-size: 30px;
+  margin: 0 0 15px;
+}
+
+.instructions-block {
+  line-height: 1.8;
+}
+
 @media only screen and (max-width: 600px) {
-  .margin-bot-fifteen {
+  .margin-bot-media {
     margin-bottom: 25px;
   }
 }
@@ -112,5 +148,25 @@ input {
 @media only screen and (max-width: 768px) {
   .hero-img {
     height: 250px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .windows-recipe-card {
+    display: none;
+  }
+
+  .ingredients-block {
+    width: 100%;
+  }
+
+  .title-container {
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .media-recipe-card {
+    display: none;
   }
 }

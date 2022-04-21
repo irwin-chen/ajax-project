@@ -21,6 +21,10 @@
   justify-content: space-around;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .position-absolute {
   position: absolute;
 }
@@ -35,6 +39,10 @@
 
 .column-third {
   width: calc(100% / 3);
+}
+
+.column-half {
+  width: 50%;
 }
 
 .height-full {
@@ -55,6 +63,10 @@
 
 .margin-0 {
   margin: 0 auto;
+}
+
+.hidden {
+  display: none;
 }
 
 @media only screen and (max-width: 600px) {
