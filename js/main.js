@@ -15,7 +15,7 @@ var recipe = null;
 
 for (var i = 0; i < data.savedRecipes.length; i++) {
   query = data.savedRecipes;
-  var branch = recipePreview(i);
+  var branch = recipePreview(query[i]);
   $savedRecipeContainer.append(branch);
 }
 
@@ -124,7 +124,7 @@ function parseQuery() {
   query = query.replaceAll(' ', ',+');
 }
 
-function recipePreview(index) {
+function recipePreview(recipeObject) {
   var $recipePreviewEntry = document.createElement('div');
   $recipePreviewEntry.className = 'column-third margin-bot-media recipe-preview-entry';
 
@@ -132,17 +132,17 @@ function recipePreview(index) {
   $recipePreviewCard.className = 'row flex-column align-center';
 
   var $recipeImage = document.createElement('img');
-  $recipeImage.src = query[index].image;
+  $recipeImage.src = recipeObject.image;
   $recipeImage.className = 'recipe-img';
 
   var $recipeName = document.createElement('p');
-  $recipeName.textContent = query[index].title;
+  $recipeName.textContent = recipeObject.title;
   $recipeName.className = 'recipe-name';
 
   var $recipeInfoButton = document.createElement('button');
   $recipeInfoButton.className = 'info-button text-white';
   $recipeInfoButton.textContent = 'READ MORE';
-  $recipeInfoButton.setAttribute('recipeid', query[index].id);
+  $recipeInfoButton.setAttribute('recipeid', recipeObject.id);
 
   $recipePreviewCard.append($recipeImage, $recipeName, $recipeInfoButton);
   $recipePreviewEntry.append($recipePreviewCard);
