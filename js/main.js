@@ -29,6 +29,13 @@ $recipeContainer.addEventListener('click', function (event) {
   recipeRequest();
   $searchView.className = 'hidden';
   $addButton.classList.remove('hidden');
+
+  for (var i = 0; i < data.savedRecipes.length; i++) {
+    if (data.savedRecipes[i].id === parseInt(recipeId)) {
+      add = true;
+      addButtonToggle();
+    }
+  }
 });
 
 $recipeCard.addEventListener('click', function (event) {
@@ -51,9 +58,13 @@ $addButton.addEventListener('click', function () {
     addButtonToggle();
     data.savedRecipes.push(recipe);
   } else {
+    for (var i = 0; i < data.savedRecipes.length; i++) {
+      if (data.savedRecipes[i].id === parseInt(recipeId)) {
+        data.savedRecipes.splice(i, 1);
+      }
+    }
     add = false;
     addButtonToggle();
-    data.savedRecipes.pop();
   }
 });
 
