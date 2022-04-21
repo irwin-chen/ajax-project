@@ -39,17 +39,25 @@ $recipeCard.addEventListener('click', function (event) {
         $recipeCard.children[0].remove();
       }
     }
+    $addButton.classList.add('hidden');
+    add = false;
+    addButtonToggle();
   }
-  $addButton.classList.add('hidden');
 });
 
 $addButton.addEventListener('click', function () {
   if (!add) {
     add = true;
+    addButtonToggle();
+    data.savedRecipes.push(recipe);
   } else {
     add = false;
+    addButtonToggle();
+    data.savedRecipes.pop();
   }
+});
 
+function addButtonToggle() {
   if (add) {
     $addButton.textContent = '✔️ ADDED';
     $addButton.className = 'added-button';
@@ -57,7 +65,7 @@ $addButton.addEventListener('click', function () {
     $addButton.textContent = '+ ADD';
     $addButton.className = 'add-button';
   }
-});
+}
 
 function parseQuery() {
   query = query.trim();
