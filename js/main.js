@@ -3,7 +3,6 @@ var $searchBar = document.querySelector('input');
 var $recipeContainer = document.querySelector('.recipe-container');
 var $searchView = document.querySelector('.home-page');
 var $recipeCard = document.querySelector('.recipe-card');
-var $header = document.querySelector('.header-height');
 var query = null;
 var recipeId = null;
 var recipe = null;
@@ -150,11 +149,6 @@ function recipeWindows() {
     $instructionItem.textContent = recipe.analyzedInstructions[0].steps[instructionsIndex].step;
     $instructionsList.append($instructionItem);
   }
-
-  var $addButton = document.createElement('button');
-  $addButton.className = 'add-button';
-  $addButton.innerText = '+ ADD';
-  $header.append($addButton);
 }
 
 function recipeMobile() {
