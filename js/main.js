@@ -11,7 +11,7 @@ $form.addEventListener('submit', function (event) {
   event.preventDefault();
 
   if ($recipeContainer.firstElementChild) {
-    while ($recipeContainer.hasChildNodes()) {
+    while ($recipeContainer.firstElementChild) {
       $recipeContainer.children[0].remove();
     }
   }
@@ -32,7 +32,11 @@ $recipeContainer.addEventListener('click', function (event) {
 $recipeCard.addEventListener('click', function (event) {
   if (event.target.matches('button')) {
     $searchView.classList.remove('hidden');
-
+    if ($recipeCard.firstElementChild) {
+      while ($recipeCard.firstElementChild) {
+        $recipeCard.children[0].remove();
+      }
+    }
   }
 });
 
