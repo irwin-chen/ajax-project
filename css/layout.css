@@ -25,6 +25,10 @@
   justify-content: space-between;
 }
 
+.flex-button {
+  justify-content: flex-end;
+}
+
 .position-absolute {
   position: absolute;
 }
@@ -84,5 +88,11 @@
 @media only screen and (max-width: 768px) {
   .container {
     width: 90%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .flex-button {
+    justify-content: center;
   }
 }
