@@ -1,7 +1,7 @@
 var $form = document.querySelector('form');
 var $searchBar = document.querySelector('input');
 var $recipeContainer = document.querySelector('.recipe-container');
-var $searchView = document.querySelector('main div div');
+var $searchView = document.querySelector('.home-page');
 var $recipeCard = document.querySelector('.recipe-card');
 var query = null;
 var recipeId = null;
@@ -11,7 +11,7 @@ $form.addEventListener('submit', function (event) {
   event.preventDefault();
 
   if ($recipeContainer.firstElementChild) {
-    while ($recipeContainer.hasChildNodes()) {
+    while ($recipeContainer.firstElementChild) {
       $recipeContainer.children[0].remove();
     }
   }
@@ -27,6 +27,17 @@ $recipeContainer.addEventListener('click', function (event) {
   }
   recipeRequest();
   $searchView.className = 'hidden';
+});
+
+$recipeCard.addEventListener('click', function (event) {
+  if (event.target.matches('button')) {
+    $searchView.classList.remove('hidden');
+    if ($recipeCard.firstElementChild) {
+      while ($recipeCard.firstElementChild) {
+        $recipeCard.children[0].remove();
+      }
+    }
+  }
 });
 
 function parseQuery() {
@@ -103,7 +114,6 @@ function recipeWindows() {
 
   var $instructionsBlock = document.createElement('div');
   $instructionsBlock.className = 'margin-bot-thirty instructions-block';
-
   $columnTwo.append($titleContainer, $instructionsBlock);
 
   var $recipeTitle = document.createElement('p');
@@ -210,9 +220,17 @@ function recipeMobile() {
     $instructionItem.textContent = recipe.analyzedInstructions[0].steps[instructionsIndex].step;
     $instructionsList.append($instructionItem);
   }
+  var $buttonDiv = document.createElement('div');
+  $buttonDiv.className = 'row flex-button';
+
+  var $backButton = document.createElement('button');
+  $backButton.textContent = 'BACK';
+  $backButton.className = 'text-white back-button margin-bot-media';
+
+  $buttonDiv.append($backButton);
 
   $mediaDiv.append($recipeImage, $titleContainer, $ingredientsBlock, $instructionsBlock);
-  $recipeCard.append($mediaDiv);
+  $recipeCard.append($mediaDiv, $buttonDiv);
 
 }
 

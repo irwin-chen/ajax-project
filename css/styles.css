@@ -139,6 +139,21 @@ input {
   line-height: 1.8;
 }
 
+.back-button {
+  padding: 10px 30px;
+  border-radius: 25px;
+  border: none;
+  background-color: #54bb5b;
+}
+
+.media-recipe-card {
+  position: relative;
+}
+
+.windows-recipe-card {
+  position: relative;
+}
+
 @media only screen and (max-width: 600px) {
   .margin-bot-media {
     margin-bottom: 25px;
