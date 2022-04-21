@@ -6,7 +6,6 @@
 
 header {
   background-color: #54bb5b;
-  position: sticky;
 }
 
 form {
@@ -152,6 +151,20 @@ input {
 
 .windows-recipe-card {
   position: relative;
+}
+
+.add-button {
+  color: #54bb5b;
+  background-color: white;
+  border-radius: 25px;
+  border: none;
+  padding: 8px 25px;
+}
+
+.add-button:hover {
+  background-color: #e5e5e5;
+  color: black;
+  transition: ease-in-out 0.2s;
 }
 
 @media only screen and (max-width: 600px) {
