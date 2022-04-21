@@ -3,13 +3,14 @@ var $searchBar = document.querySelector('input');
 var $recipeContainer = document.querySelector('.recipe-container');
 var $searchView = document.querySelector('.home-page');
 var $recipeCard = document.querySelector('.recipe-card');
+var $addButton = document.querySelector('.add-button');
+var add = null;
 var query = null;
 var recipeId = null;
 var recipe = null;
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
-
   if ($recipeContainer.firstElementChild) {
     while ($recipeContainer.firstElementChild) {
       $recipeContainer.children[0].remove();
@@ -27,6 +28,7 @@ $recipeContainer.addEventListener('click', function (event) {
   }
   recipeRequest();
   $searchView.className = 'hidden';
+  $addButton.classList.remove('hidden');
 });
 
 $recipeCard.addEventListener('click', function (event) {
@@ -37,6 +39,23 @@ $recipeCard.addEventListener('click', function (event) {
         $recipeCard.children[0].remove();
       }
     }
+  }
+  $addButton.classList.add('hidden');
+});
+
+$addButton.addEventListener('click', function () {
+  if (!add) {
+    add = true;
+  } else {
+    add = false;
+  }
+
+  if (add) {
+    $addButton.textContent = '✔️ ADDED';
+    $addButton.className = 'added-button';
+  } else {
+    $addButton.textContent = '+ ADD';
+    $addButton.className = 'add-button';
   }
 });
 
