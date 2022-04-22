@@ -12,6 +12,7 @@ var add = null;
 var query = null;
 var recipeId = null;
 var recipe = null;
+var apiKey = '';
 
 for (var i = 0; i < data.savedRecipes.length; i++) {
   query = data.savedRecipes;
@@ -323,7 +324,7 @@ function recipeMobile() {
 
 function serverRequest() {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.spoonacular.com/recipes/findByIngredients' + '?ingredients=' + query + '&number=6&ranking=1&ignorePantry=true&apiKey=a264ae5f3ca9445d94cfeb08761ae88b');
+  xhr.open('GET', 'https://api.spoonacular.com/recipes/findByIngredients' + '?ingredients=' + query + '&number=6&ranking=1&ignorePantry=true&apiKey=' + apiKey);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     query = xhr.response;
@@ -337,7 +338,7 @@ function serverRequest() {
 
 function recipeRequest() {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.spoonacular.com/recipes/' + recipeId + '/information?apiKey=a264ae5f3ca9445d94cfeb08761ae88b');
+  xhr.open('GET', 'https://api.spoonacular.com/recipes/' + recipeId + '/information?apiKey=' + apiKey);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     recipe = xhr.response;
