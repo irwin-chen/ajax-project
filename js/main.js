@@ -1,70 +1,119 @@
 var $form = document.querySelector('form');
 var $searchBar = document.querySelector('input');
-var $recipeContainer = document.querySelector('.recipe-container');
+var $recipeContainerDiv = document.querySelector('.recipe-container-div');
+var $searchRecipeContainer = document.querySelector('.search-recipe-container');
+var $savedRecipeContainer = document.querySelector('.saved-recipe-container');
 var $searchView = document.querySelector('.home-page');
 var $recipeCard = document.querySelector('.recipe-card');
 var $addButton = document.querySelector('.add-button');
+var $savedRecipesView = document.querySelector('.saved-recipes-button');
+var $divText = document.querySelector('.div-text');
 var add = null;
 var query = null;
 var recipeId = null;
 var recipe = null;
 
+for (var i = 0; i < data.savedRecipes.length; i++) {
+  query = data.savedRecipes;
+  var branch = recipePreview(query[i]);
+  $savedRecipeContainer.append(branch);
+}
+
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
-  if ($recipeContainer.firstElementChild) {
-    while ($recipeContainer.firstElementChild) {
-      $recipeContainer.children[0].remove();
+  if ($searchRecipeContainer.firstElementChild) {
+    while ($searchRecipeContainer.firstElementChild) {
+      $searchRecipeContainer.children[0].remove();
     }
   }
   query = $searchBar.value;
   parseQuery();
   serverRequest();
+  $divText.textContent = 'Search';
+  $searchRecipeContainer.classList.remove('hidden');
+  $savedRecipeContainer.classList.add('hidden');
   $form.reset();
 });
 
-$recipeContainer.addEventListener('click', function (event) {
+$recipeContainerDiv.addEventListener('click', function (event) {
   if (event.target.matches('button')) {
     recipeId = event.target.getAttribute('recipeid');
-  }
-  recipeRequest();
-  $searchView.className = 'hidden';
-  $addButton.classList.remove('hidden');
 
-  for (var i = 0; i < data.savedRecipes.length; i++) {
-    if (data.savedRecipes[i].id === parseInt(recipeId)) {
-      add = true;
-      addButtonToggle();
+    var counter = 0;
+    for (var i = 0; i < data.savedRecipes.length; i++) {
+      if (data.savedRecipes[i].id === parseInt(recipeId)) {
+        recipe = data.savedRecipes[i];
+        recipeWindows();
+        recipeMobile();
+        break;
+      } else {
+        counter++;
+      }
+    }
+    if (counter === data.savedRecipes.length) {
+      recipeRequest();
+    }
+
+    $searchView.className = 'hidden';
+    $addButton.classList.remove('hidden');
+
+    for (i = 0; i < data.savedRecipes.length; i++) {
+      if (data.savedRecipes[i].id === parseInt(recipeId)) {
+        add = true;
+        addButtonToggle();
+      }
     }
   }
 });
 
 $recipeCard.addEventListener('click', function (event) {
   if (event.target.matches('button')) {
-    $searchView.classList.remove('hidden');
-    if ($recipeCard.firstElementChild) {
-      while ($recipeCard.firstElementChild) {
-        $recipeCard.children[0].remove();
-      }
-    }
-    $addButton.classList.add('hidden');
-    add = false;
-    addButtonToggle();
+    back();
   }
 });
+
+function back() {
+  $searchView.classList.remove('hidden');
+  if ($recipeCard.firstElementChild) {
+    while ($recipeCard.firstElementChild) {
+      $recipeCard.children[0].remove();
+    }
+  }
+  add = false;
+  addButtonToggle();
+  $addButton.classList.add('hidden');
+  if (document.querySelectorAll('.saved-recipe-container div.recipe-preview-entry').length === 0) {
+    document.querySelector('.no-entries-text').classList.remove('hidden');
+  } else {
+    document.querySelector('.no-entries-text').className = 'no-entries-text hidden';
+  }
+}
 
 $addButton.addEventListener('click', function () {
   if (!add) {
     add = true;
     addButtonToggle();
     data.savedRecipes.push(recipe);
+    var addedRecipe = recipePreview(recipe);
+    $savedRecipeContainer.append(addedRecipe);
   } else {
     for (var i = 0; i < data.savedRecipes.length; i++) {
       if (data.savedRecipes[i].id === parseInt(recipeId)) {
         data.savedRecipes.splice(i, 1);
+        document.querySelectorAll('.saved-recipe-container div.recipe-preview-entry')[i].remove();
       }
     }
     add = false;
     addButtonToggle();
+  }
+});
+
+$savedRecipesView.addEventListener('click', function () {
+  if (event.target.matches('a')) {
+    $divText.textContent = 'Saved';
+    $savedRecipeContainer.classList.remove('hidden');
+    $searchRecipeContainer.classList.add('hidden');
+    back();
   }
 });
 
@@ -83,7 +132,7 @@ function parseQuery() {
   query = query.replaceAll(' ', ',+');
 }
 
-function recipePreview(index) {
+function recipePreview(recipeObject) {
   var $recipePreviewEntry = document.createElement('div');
   $recipePreviewEntry.className = 'column-third margin-bot-media recipe-preview-entry';
 
@@ -91,24 +140,24 @@ function recipePreview(index) {
   $recipePreviewCard.className = 'row flex-column align-center';
 
   var $recipeImage = document.createElement('img');
-  $recipeImage.src = query[index].image;
+  $recipeImage.src = recipeObject.image;
   $recipeImage.className = 'recipe-img';
 
   var $recipeName = document.createElement('p');
-  $recipeName.textContent = query[index].title;
+  $recipeName.textContent = recipeObject.title;
   $recipeName.className = 'recipe-name';
 
   var $recipeInfoButton = document.createElement('button');
   $recipeInfoButton.className = 'info-button text-white';
   $recipeInfoButton.textContent = 'READ MORE';
-  $recipeInfoButton.setAttribute('recipeid', query[index].id);
+  $recipeInfoButton.setAttribute('recipeid', recipeObject.id);
 
   $recipePreviewCard.append($recipeImage, $recipeName, $recipeInfoButton);
   $recipePreviewEntry.append($recipePreviewCard);
-  $recipeContainer.append($recipePreviewEntry);
+  return $recipePreviewEntry;
 }
 
-function recipeWindows() {
+function recipeWindows(recipeObject) {
   var $windowsDiv = document.createElement('div');
   $windowsDiv.className = 'windows-recipe-card row';
   $recipeCard.append($windowsDiv);
@@ -279,7 +328,8 @@ function serverRequest() {
   xhr.addEventListener('load', function () {
     query = xhr.response;
     for (var queryIndex = 0; queryIndex < query.length; queryIndex++) {
-      recipePreview(queryIndex);
+      var branch = recipePreview(query[queryIndex]);
+      $searchRecipeContainer.append(branch);
     }
   });
   xhr.send();

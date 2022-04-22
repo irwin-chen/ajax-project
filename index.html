@@ -16,7 +16,10 @@
 <body>
   <header class="margin-bot-thirty">
     <div class="container row align-center header-height margin-0 justify-between">
-      <p class="header-logo text-white">Leftovrs</p>
+      <div class="row align-center">
+        <p class="header-logo text-white">Leftovrs</p>
+        <a class="text-white saved-recipes-button">Saved Recipes</a>
+      </div>
       <button class="add-button hidden">+ ADD</button>
     </div>
   </header>
@@ -30,7 +33,7 @@
           <div class="position-absolute width-full height-full">
             <div class="row flex-column justify-around align-center height-full">
               <p class="text-white search-bar-title">Search Our Site!</p>
-              <form class="width-full text-center" action="">
+              <form autocomplete="off" class="width-full text-center" action="">
                 <input class="search-bar" type="search" name="searches" required>
               </form>
               <p class="text-white">separate multiple ingredients with a space</p>
@@ -40,7 +43,12 @@
         <div class="div-bar margin-0 row align-center justify-center margin-bot-thirty">
           <p class="text-center div-text">Search</p>
         </div>
-        <div class="row flex-wrap justify-around margin-bot-thirty recipe-container">
+        <div class="recipe-container-div">
+          <div class="row flex-wrap justify-around margin-bot-thirty search-recipe-container">
+          </div>
+          <div class="row flex-wrap justify-around margin-bot-thirty saved-recipe-container hidden">
+            <p class="no-entries-text hidden">No Saved Recipes</p>
+          </div>
         </div>
       </div>
       <div class="recipe-card">
