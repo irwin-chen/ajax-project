@@ -82,6 +82,11 @@ function back() {
   add = false;
   addButtonToggle();
   $addButton.classList.add('hidden');
+  if (document.querySelectorAll('.saved-recipe-container div.recipe-preview-entry').length === 0) {
+    document.querySelector('.no-entries-text').classList.remove('hidden');
+  } else {
+    document.querySelector('.no-entries-text').className = 'no-entries-text hidden';
+  }
 }
 
 $addButton.addEventListener('click', function () {

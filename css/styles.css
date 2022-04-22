@@ -181,6 +181,12 @@ input {
   margin-left: 25px;
 }
 
+.no-entries-text {
+  margin-top: 100px;
+  color: lightgrey;
+  font-weight: lighter;
+}
+
 @media only screen and (max-width: 600px) {
   .margin-bot-media {
     margin-bottom: 25px;
