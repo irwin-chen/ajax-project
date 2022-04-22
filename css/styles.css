@@ -73,8 +73,16 @@ input {
   font-weight: 200;
 }
 
-.recipe-img {
+.recipe-preview-img {
   width: 95%;
+  object-fit: cover;
+  height: 200px;
+}
+
+.recipe-card-img {
+  width: 95%;
+  object-fit: cover;
+  height: 40vh;
 }
 
 .recipe-name {
@@ -152,14 +160,6 @@ input {
   transition: ease-in 0.2s;
 }
 
-.media-recipe-card {
-  position: relative;
-}
-
-.windows-recipe-card {
-  position: relative;
-}
-
 .add-button {
   color: #54bb5b;
   background-color: white;
@@ -197,6 +197,10 @@ input {
 @media only screen and (max-width: 600px) {
   .margin-bot-media {
     margin-bottom: 25px;
+  }
+
+  .recipe-preview-img {
+    height: 300px;
   }
 }
 

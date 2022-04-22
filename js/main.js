@@ -142,7 +142,7 @@ function recipePreview(recipeObject) {
 
   var $recipeImage = document.createElement('img');
   $recipeImage.src = recipeObject.image;
-  $recipeImage.className = 'recipe-img';
+  $recipeImage.className = 'recipe-preview-img';
 
   var $recipeName = document.createElement('p');
   $recipeName.textContent = recipeObject.title;
@@ -171,7 +171,7 @@ function recipeWindows(recipeObject) {
   $windowsDiv.append($columnOne, $columnTwo);
 
   var $recipeImage = document.createElement('img');
-  $recipeImage.className = 'recipe-img margin-bot-media';
+  $recipeImage.className = 'recipe-card-img margin-bot-media';
   $recipeImage.src = recipe.image;
 
   var $ingredientsBlock = document.createElement('div');
