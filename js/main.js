@@ -332,7 +332,7 @@ function serverRequest() {
     var counter = 0;
     var checkedEntries = [];
     for (var queryIndex = 0; queryIndex < query.length; queryIndex++) {
-      if (query[queryIndex].analyzedInstructions.length !== 0) {
+      if (query[queryIndex].analyzedInstructions.length !== 0 && query[queryIndex].image !== undefined) {
         checkedEntries.push(queryIndex);
       }
     }
