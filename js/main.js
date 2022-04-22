@@ -89,10 +89,13 @@ $addButton.addEventListener('click', function () {
     add = true;
     addButtonToggle();
     data.savedRecipes.push(recipe);
+    var addedRecipe = recipePreview(recipe);
+    $savedRecipeContainer.append(addedRecipe);
   } else {
     for (var i = 0; i < data.savedRecipes.length; i++) {
       if (data.savedRecipes[i].id === parseInt(recipeId)) {
         data.savedRecipes.splice(i, 1);
+        document.querySelectorAll('.saved-recipe-container div.recipe-preview-entry')[i].remove();
       }
     }
     add = false;
@@ -149,7 +152,7 @@ function recipePreview(recipeObject) {
   return $recipePreviewEntry;
 }
 
-function recipeWindows() {
+function recipeWindows(recipeObject) {
   var $windowsDiv = document.createElement('div');
   $windowsDiv.className = 'windows-recipe-card row';
   $recipeCard.append($windowsDiv);
@@ -320,7 +323,7 @@ function serverRequest() {
   xhr.addEventListener('load', function () {
     query = xhr.response;
     for (var queryIndex = 0; queryIndex < query.length; queryIndex++) {
-      var branch = recipePreview(queryIndex);
+      var branch = recipePreview(query[queryIndex]);
       $searchRecipeContainer.append(branch);
     }
   });

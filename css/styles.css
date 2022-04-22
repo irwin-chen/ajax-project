@@ -178,7 +178,7 @@ input {
 
 .saved-recipes-button {
   font-size: 15px;
-  margin-left: 15px;
+  margin-left: 25px;
 }
 
 @media only screen and (max-width: 600px) {
