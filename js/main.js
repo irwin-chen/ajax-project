@@ -12,7 +12,7 @@ var add = null;
 var query = null;
 var recipeId = null;
 var recipe = null;
-var apiKey = 'a70a8d4ed1ee4b69955bbe73a3c4a2f3';
+var apiKey = '';
 
 for (var i = 0; i < data.savedRecipes.length; i++) {
   query = data.savedRecipes;

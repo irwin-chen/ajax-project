@@ -14,16 +14,13 @@ form {
 
 input {
   outline: none;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 /* class selector */
 .header-logo {
-  font-size: 24px;
-}
-
-.header-height {
-  height: 60px;
+  font-size: 1.5rem;
+  margin: 1rem 0;
 }
 
 .hero-img {
@@ -34,11 +31,11 @@ input {
 }
 
 .margin-bot-thirty {
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
 }
 
 .margin-bot-media {
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 .search-bar {
@@ -59,8 +56,8 @@ input {
 }
 
 .search-bar-title {
-  font-size: 32px;
-  margin: 30px 0;
+  font-size: 2rem;
+  margin: 2rem 0;
 }
 
 .div-bar {
@@ -86,7 +83,7 @@ input {
 }
 
 .recipe-name {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 300;
   margin: 10px 0;
   text-align: center;
@@ -101,7 +98,7 @@ input {
 .info-button {
   border-radius: 25px;
   background-color: #54bb5b;
-  font-size: 12px;
+  font-size: 0.75rem;
   border: none;
   width: 75%;
   padding-top: 10px;
@@ -115,10 +112,10 @@ input {
 }
 
 .divider-title {
-  font-weight: bolder;
+  font-weight: 700;
   padding-left: 5%;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .divider {
@@ -131,14 +128,14 @@ input {
   list-style: none;
   padding-left: 5%;
   line-height: 1.5;
-  padding-bottom: 15px;
-  font-size: 14px;
+  padding-bottom: 1rem;
+  font-size: 0.9rem;
 }
 
 .recipe-title {
-  font-weight: bold;
-  font-size: 30px;
-  margin: 0 0 15px;
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 0 0 1rem;
 }
 
 .instructions-block {
@@ -151,7 +148,7 @@ input {
   border: none;
   background-color: #54bb5b;
   letter-spacing: 0.1em;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .back-button:hover,
@@ -184,14 +181,14 @@ input {
 }
 
 .saved-recipes-button {
-  font-size: 15px;
+  font-size: 1rem;
   margin-left: 25px;
 }
 
 .no-entries-text {
   margin-top: 100px;
   color: lightgrey;
-  font-weight: lighter;
+  font-weight: 300;
 }
 
 @media only screen and (max-width: 600px) {
