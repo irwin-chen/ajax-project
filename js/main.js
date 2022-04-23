@@ -12,6 +12,7 @@ var add = null;
 var query = null;
 var recipeId = null;
 var recipe = null;
+var apiKey = '';
 
 for (var i = 0; i < data.savedRecipes.length; i++) {
   query = data.savedRecipes;
@@ -37,11 +38,11 @@ $form.addEventListener('submit', function (event) {
 
 $recipeContainerDiv.addEventListener('click', function (event) {
   if (event.target.matches('button')) {
-    recipeId = event.target.getAttribute('recipeid');
-
+    recipeId = event.target.getAttribute('recipe-id');
+    recipeId = parseInt(recipeId);
     var counter = 0;
     for (var i = 0; i < data.savedRecipes.length; i++) {
-      if (data.savedRecipes[i].id === parseInt(recipeId)) {
+      if (data.savedRecipes[i].id === recipeId) {
         recipe = data.savedRecipes[i];
         recipeWindows();
         recipeMobile();
@@ -54,11 +55,11 @@ $recipeContainerDiv.addEventListener('click', function (event) {
       recipeRequest();
     }
 
-    $searchView.className = 'hidden';
+    $searchView.className = 'home-page hidden';
     $addButton.classList.remove('hidden');
 
     for (i = 0; i < data.savedRecipes.length; i++) {
-      if (data.savedRecipes[i].id === parseInt(recipeId)) {
+      if (data.savedRecipes[i].id === recipeId) {
         add = true;
         addButtonToggle();
       }
@@ -141,7 +142,7 @@ function recipePreview(recipeObject) {
 
   var $recipeImage = document.createElement('img');
   $recipeImage.src = recipeObject.image;
-  $recipeImage.className = 'recipe-img';
+  $recipeImage.className = 'recipe-preview-img';
 
   var $recipeName = document.createElement('p');
   $recipeName.textContent = recipeObject.title;
@@ -150,7 +151,7 @@ function recipePreview(recipeObject) {
   var $recipeInfoButton = document.createElement('button');
   $recipeInfoButton.className = 'info-button text-white';
   $recipeInfoButton.textContent = 'READ MORE';
-  $recipeInfoButton.setAttribute('recipeid', recipeObject.id);
+  $recipeInfoButton.setAttribute('recipe-id', recipeObject.id);
 
   $recipePreviewCard.append($recipeImage, $recipeName, $recipeInfoButton);
   $recipePreviewEntry.append($recipePreviewCard);
@@ -170,7 +171,7 @@ function recipeWindows(recipeObject) {
   $windowsDiv.append($columnOne, $columnTwo);
 
   var $recipeImage = document.createElement('img');
-  $recipeImage.className = 'recipe-img margin-bot-media';
+  $recipeImage.className = 'recipe-card-img margin-bot-media';
   $recipeImage.src = recipe.image;
 
   var $ingredientsBlock = document.createElement('div');
@@ -323,13 +324,27 @@ function recipeMobile() {
 
 function serverRequest() {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.spoonacular.com/recipes/findByIngredients' + '?ingredients=' + query + '&number=6&ranking=1&ignorePantry=true&apiKey=a264ae5f3ca9445d94cfeb08761ae88b');
+  xhr.open('GET', 'https://api.spoonacular.com/recipes/complexSearch?includeIngredients=' + query + '&number=10&ranking=1&ignorePantry=true&apiKey=' + apiKey + '&instructionsRequired=true&addRecipeInformation=true');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     query = xhr.response;
+    query = query.results;
+    var counter = 0;
+    var checkedEntries = [];
     for (var queryIndex = 0; queryIndex < query.length; queryIndex++) {
-      var branch = recipePreview(query[queryIndex]);
-      $searchRecipeContainer.append(branch);
+      if (query[queryIndex].analyzedInstructions.length !== 0 && query[queryIndex].image !== undefined) {
+        checkedEntries.push(queryIndex);
+      }
+    }
+    for (var i = 0; i < checkedEntries.length; i++) {
+      if (query[checkedEntries[i]].analyzedInstructions[0].steps.length !== 0) {
+        branch = recipePreview(query[checkedEntries[i]]);
+        $searchRecipeContainer.append(branch);
+        counter++;
+      }
+      if (counter === 6) {
+        break;
+      }
     }
   });
   xhr.send();
@@ -337,10 +352,17 @@ function serverRequest() {
 
 function recipeRequest() {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.spoonacular.com/recipes/' + recipeId + '/information?apiKey=a264ae5f3ca9445d94cfeb08761ae88b');
+  xhr.open('GET', 'https://api.spoonacular.com/recipes/' + recipeId + '/information?apiKey=' + apiKey);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     recipe = xhr.response;
+    for (var i = 0; i < query.length; i++) {
+      if (recipe.id === query[i].id) {
+        if (recipe.image === undefined) {
+          recipe.image = query[i].image;
+        }
+      }
+    }
     recipeWindows();
     recipeMobile();
   });
