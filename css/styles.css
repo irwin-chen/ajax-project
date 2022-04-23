@@ -17,6 +17,11 @@ input {
   font-size: 1rem;
 }
 
+button,
+a {
+  cursor: pointer;
+}
+
 /* class selector */
 .header-logo {
   font-size: 1.5rem;
@@ -171,6 +176,11 @@ input {
   border-radius: 25px;
   border: none;
   padding: 0.5rem 2rem;
+  transition: ease-in-out 0.2s;
+}
+
+.added-button:hover {
+  box-shadow: 0 0 1px 1px whitesmoke;
 }
 
 .add-button:hover {
@@ -183,6 +193,11 @@ input {
 .saved-recipes-button {
   font-size: 1rem;
   margin-left: 1.5rem;
+  transition: ease-in-out 0.2s;
+}
+
+.saved-recipes-button:hover {
+  color: #e5e5e5;
 }
 
 .no-entries-text {
