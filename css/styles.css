@@ -43,8 +43,8 @@ input {
   border-radius: 25px;
   height: 35px;
   width: 70%;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .search-bar:focus {
@@ -100,9 +100,9 @@ input {
   background-color: #54bb5b;
   font-size: 0.75rem;
   border: none;
-  width: 75%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  width: 65%;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
   letter-spacing: 0.1em;
 }
 
@@ -162,7 +162,7 @@ input {
   background-color: white;
   border-radius: 25px;
   border: none;
-  padding: 8px 25px;
+  padding: 0.5rem 2rem;
 }
 
 .added-button {
@@ -170,7 +170,7 @@ input {
   background-color: #e5e5e5;
   border-radius: 25px;
   border: none;
-  padding: 8px 25px;
+  padding: 0.5rem 2rem;
 }
 
 .add-button:hover {
@@ -182,7 +182,7 @@ input {
 
 .saved-recipes-button {
   font-size: 1rem;
-  margin-left: 25px;
+  margin-left: 1.5rem;
 }
 
 .no-entries-text {
