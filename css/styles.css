@@ -85,7 +85,7 @@ input {
 .recipe-name {
   font-size: 1.25rem;
   font-weight: 300;
-  margin: 10px 0;
+  margin: 0.75rem 0;
   text-align: center;
   overflow: hidden;
   width: 90%;
@@ -193,7 +193,7 @@ input {
 
 @media only screen and (max-width: 600px) {
   .margin-bot-media {
-    margin-bottom: 25px;
+    margin-bottom: 1.5rem;
   }
 
   .recipe-preview-img {
@@ -217,7 +217,7 @@ input {
   }
 
   .title-container {
-    margin-bottom: 10px;
+    margin-bottom: 0.75rem;
   }
 }
 
