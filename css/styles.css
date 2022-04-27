@@ -206,19 +206,17 @@ a {
   font-weight: 300;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
+  .hero-img {
+    height: 250px;
+  }
+
   .margin-bot-media {
     margin-bottom: 1.5rem;
   }
 
   .recipe-preview-img {
     height: 300px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .hero-img {
-    height: 250px;
   }
 }
 
