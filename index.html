@@ -15,11 +15,21 @@
 </head>
 <body>
   <div class="position-fixed modal-background row align-center justify-center hidden">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+    <div class="empty-result row flex-column align-center hidden text-center">
+      <p>No results found! Please try again.</p>
+      <button class="back-button text-white">BACK</button>
+    </div>
+    <div class="error-message row flex-column align-center hidden text-center">
+      <p>Connection error! Please check your connection and try again.</p>
+      <button class="back-button text-white">BACK</button>
+    </div>
+    <div class="loader hidden">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   </div>
   <header class="margin-bot-thirty">
@@ -53,9 +63,8 @@
         </div>
         <div class="recipe-container-div">
           <div class="row flex-wrap justify-around margin-bot-thirty search-recipe-container">
-            <p class="no-recipes-text hidden">No Recipes Found</p>
           </div>
-          <div class="row flex-wrap justify-around margin-bot-thirty saved-recipe-container">
+          <div class="row flex-wrap justify-around margin-bot-thirty saved-recipe-container hidden">
             <p class="no-entries-text hidden">No Saved Recipes</p>
           </div>
         </div>
