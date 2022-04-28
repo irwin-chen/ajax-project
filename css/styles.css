@@ -17,6 +17,10 @@ input {
   font-size: 1rem;
 }
 
+li {
+  margin: 0.5em;
+}
+
 button,
 a {
   cursor: pointer;
@@ -156,10 +160,15 @@ a {
   font-size: 0.75rem;
 }
 
+.back-button:active,
+.info-button:active {
+  box-shadow: 0 0 0 1px lightgray;
+}
+
 .back-button:hover,
 .info-button:hover {
-  box-shadow: 0 0 0 1px lightgray;
-  transition: ease-in 0.2s;
+  color: #e5e5e5;
+  transition: ease-in 0.1s;
 }
 
 .add-button {

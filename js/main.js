@@ -313,7 +313,7 @@ function recipeMobile() {
 
   var $backButton = document.createElement('button');
   $backButton.textContent = 'BACK';
-  $backButton.className = 'text-white back-button margin-bot-media';
+  $backButton.className = 'text-white back-button margin-bot-media flex-button';
 
   $buttonDiv.append($backButton);
 
