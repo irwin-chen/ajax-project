@@ -33,6 +33,10 @@
   position: absolute;
 }
 
+.position-fixed {
+  position: fixed;
+}
+
 .position-relative {
   position: relative;
 }
