@@ -219,6 +219,36 @@ a {
   margin-bottom: 0.75rem;
 }
 
+@media only screen and (max-width: 500px) {
+  .header-logo {
+    font-size: 6vw;
+  }
+
+  .added-button {
+    font-size: 3vw;
+    padding: 8px 10px;
+  }
+
+  .add-button {
+    font-size: 3vw;
+    padding: 8px 10px;
+  }
+
+  .recipe-title,
+  .search-bar-title {
+    font-size: 8vw;
+  }
+
+  .title-container,
+  .divider-title,
+  .ingredients-list,
+  .instructions-list,
+  .saved-recipes-button,
+  .search-subtext {
+    font-size: 4vw;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .hero-img {
     max-height: 200px;
@@ -247,4 +277,5 @@ a {
   .windows-recipe-card {
     display: none;
   }
+}
 }

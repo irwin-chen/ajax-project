@@ -300,6 +300,7 @@ function recipeMobile() {
   $instructionsDivider.className = 'divider margin-0';
 
   var $instructionsList = document.createElement('ul');
+  $instructionsList.className = 'instructions-list';
 
   $instructionsBlock.append($instructionsTitle, $instructionsDivider, $instructionsList);
 
