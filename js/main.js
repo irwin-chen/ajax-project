@@ -8,11 +8,15 @@ var $recipeCard = document.querySelector('.recipe-card');
 var $addButton = document.querySelector('.add-button');
 var $savedRecipesView = document.querySelector('.saved-recipes-button');
 var $divText = document.querySelector('.div-text');
+var $modal = document.querySelector('.modal-background');
+var $loader = document.querySelector('.loader');
+var $emptyResult = document.querySelector('.empty-result');
+var $errorMessage = document.querySelector('.error-message');
 var add = null;
 var query = null;
 var recipeId = null;
 var recipe = null;
-var apiKey = '';
+var apiKey = '690d68e0480f4991a072cd4913ce186e';
 
 for (var i = 0; i < data.savedRecipes.length; i++) {
   query = data.savedRecipes;
@@ -70,6 +74,20 @@ $recipeContainerDiv.addEventListener('click', function (event) {
 $recipeCard.addEventListener('click', function (event) {
   if (event.target.matches('button')) {
     back();
+  }
+});
+
+$emptyResult.addEventListener('click', function () {
+  if (event.target.matches('button')) {
+    $emptyResult.classList.add('hidden');
+    $modal.classList.add('hidden');
+  }
+});
+
+$errorMessage.addEventListener('click', function () {
+  if (event.target.matches('button')) {
+    $errorMessage.classList.add('hidden');
+    $modal.classList.add('hidden');
   }
 });
 
@@ -300,6 +318,7 @@ function recipeMobile() {
   $instructionsDivider.className = 'divider margin-0';
 
   var $instructionsList = document.createElement('ul');
+  $instructionsList.className = 'instructions-list';
 
   $instructionsBlock.append($instructionsTitle, $instructionsDivider, $instructionsList);
 
@@ -313,7 +332,7 @@ function recipeMobile() {
 
   var $backButton = document.createElement('button');
   $backButton.textContent = 'BACK';
-  $backButton.className = 'text-white back-button margin-bot-media';
+  $backButton.className = 'text-white back-button margin-bot-media flex-button';
 
   $buttonDiv.append($backButton);
 
@@ -323,10 +342,13 @@ function recipeMobile() {
 }
 
 function serverRequest() {
+  $modal.classList.remove('hidden');
+  $loader.classList.remove('hidden');
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.spoonacular.com/recipes/complexSearch?includeIngredients=' + query + '&number=10&ranking=1&ignorePantry=true&apiKey=' + apiKey + '&instructionsRequired=true&addRecipeInformation=true');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+    $loader.classList.add('hidden');
     query = xhr.response;
     query = query.results;
     var counter = 0;
@@ -346,16 +368,29 @@ function serverRequest() {
         break;
       }
     }
+    if (document.querySelectorAll('div.search-recipe-container div.recipe-preview-entry').length === 0) {
+      $emptyResult.classList.remove('hidden');
+    } else {
+      $modal.classList.add('hidden');
+    }
+  });
+  xhr.addEventListener('error', function () {
+    $loader.classList.add('hidden');
+    $errorMessage.classList.remove('hidden');
   });
   xhr.send();
 }
 
 function recipeRequest() {
+  $modal.classList.remove('hidden');
+  $loader.classList.remove('hidden');
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.spoonacular.com/recipes/' + recipeId + '/information?apiKey=' + apiKey);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     recipe = xhr.response;
+    $modal.classList.add('hidden');
+    $loader.classList.add('hidden');
     for (var i = 0; i < query.length; i++) {
       if (recipe.id === query[i].id) {
         if (recipe.image === undefined) {
