@@ -313,16 +313,12 @@ a {
 /* tablet view */
 
 @media only screen and (min-width: 768px) {
-  .hero-img {
-    max-height: 200px;
-  }
-
   .margin-bot-media {
     margin-bottom: 1rem;
   }
 
   .recipe-preview-img {
-    height: 200px;
+    max-height: 200px;
   }
 }
 
