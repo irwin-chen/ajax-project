@@ -50,10 +50,8 @@ a {
 .search-bar {
   border: none;
   border-radius: 25px;
-  height: 35px;
   width: 70%;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding: 0.6rem 0.75rem;
 }
 
 .search-bar:focus {
@@ -312,6 +310,8 @@ a {
   }
 }
 
+/* tablet view */
+
 @media only screen and (min-width: 768px) {
   .hero-img {
     max-height: 200px;
@@ -325,6 +325,8 @@ a {
     height: 200px;
   }
 }
+
+/* desktop view */
 
 @media only screen and (min-width: 1280px) {
   .media-recipe-card {
@@ -340,5 +342,4 @@ a {
   .windows-recipe-card {
     display: none;
   }
-}
 }
