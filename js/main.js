@@ -1,26 +1,26 @@
-var $form = document.querySelector('form');
-var $searchBar = document.querySelector('input');
-var $recipeContainerDiv = document.querySelector('.recipe-container-div');
-var $searchRecipeContainer = document.querySelector('.search-recipe-container');
-var $savedRecipeContainer = document.querySelector('.saved-recipe-container');
-var $searchView = document.querySelector('.home-page');
-var $recipeCard = document.querySelector('.recipe-card');
-var $addButton = document.querySelector('.add-button');
-var $savedRecipesView = document.querySelector('.saved-recipes-button');
-var $divText = document.querySelector('.div-text');
-var $modal = document.querySelector('.modal-background');
-var $loader = document.querySelector('.loader');
-var $emptyResult = document.querySelector('.empty-result');
-var $errorMessage = document.querySelector('.error-message');
-var add = null;
-var query = null;
-var recipeId = null;
-var recipe = null;
-var apiKey = '690d68e0480f4991a072cd4913ce186e';
+const $form = document.querySelector('form');
+const $searchBar = document.querySelector('input');
+const $recipeContainerDiv = document.querySelector('.recipe-container-div');
+const $searchRecipeContainer = document.querySelector('.search-recipe-container');
+const $savedRecipeContainer = document.querySelector('.saved-recipe-container');
+const $searchView = document.querySelector('.home-page');
+const $recipeCard = document.querySelector('.recipe-card');
+const $addButton = document.querySelector('.add-button');
+const $savedRecipesView = document.querySelector('.saved-recipes-button');
+const $divText = document.querySelector('.div-text');
+const $modal = document.querySelector('.modal-background');
+const $loader = document.querySelector('.loader');
+const $emptyResult = document.querySelector('.empty-result');
+const $errorMessage = document.querySelector('.error-message');
+let add = null;
+let query = null;
+let recipeId = null;
+let recipe = null;
+const apiKey = '690d68e0480f4991a072cd4913ce186e';
 
-for (var i = 0; i < data.savedRecipes.length; i++) {
+for (let i = 0; i < data.savedRecipes.length; i++) {
   query = data.savedRecipes;
-  var branch = recipePreview(query[i]);
+  const branch = recipePreview(query[i]);
   $savedRecipeContainer.append(branch);
 }
 
@@ -44,8 +44,8 @@ $recipeContainerDiv.addEventListener('click', function (event) {
   if (event.target.matches('button')) {
     recipeId = event.target.getAttribute('recipe-id');
     recipeId = parseInt(recipeId);
-    var counter = 0;
-    for (var i = 0; i < data.savedRecipes.length; i++) {
+    let counter = 0;
+    for (let i = 0; i < data.savedRecipes.length; i++) {
       if (data.savedRecipes[i].id === recipeId) {
         recipe = data.savedRecipes[i];
         recipeWindows();
@@ -62,7 +62,7 @@ $recipeContainerDiv.addEventListener('click', function (event) {
     $searchView.className = 'home-page hidden';
     $addButton.classList.remove('hidden');
 
-    for (i = 0; i < data.savedRecipes.length; i++) {
+    for (let i = 0; i < data.savedRecipes.length; i++) {
       if (data.savedRecipes[i].id === recipeId) {
         add = true;
         addButtonToggle();
@@ -113,10 +113,10 @@ $addButton.addEventListener('click', function () {
     add = true;
     addButtonToggle();
     data.savedRecipes.push(recipe);
-    var addedRecipe = recipePreview(recipe);
+    const addedRecipe = recipePreview(recipe);
     $savedRecipeContainer.append(addedRecipe);
   } else {
-    for (var i = 0; i < data.savedRecipes.length; i++) {
+    for (let i = 0; i < data.savedRecipes.length; i++) {
       if (data.savedRecipes[i].id === parseInt(recipeId)) {
         data.savedRecipes.splice(i, 1);
         document.querySelectorAll('.saved-recipe-container div.recipe-preview-entry')[i].remove();
@@ -152,185 +152,184 @@ function parseQuery() {
 }
 
 function recipePreview(recipeObject) {
-  var $recipePreviewEntry = document.createElement('div');
+  const $recipePreviewEntry = document.createElement('div');
   $recipePreviewEntry.className = 'column-third margin-bot-media recipe-preview-entry';
 
-  var $recipePreviewCard = document.createElement('div');
+  const $recipePreviewCard = document.createElement('div');
   $recipePreviewCard.className = 'row flex-column align-center';
 
-  var $recipeImage = document.createElement('img');
+  const $recipeImage = document.createElement('img');
   $recipeImage.src = recipeObject.image;
   $recipeImage.className = 'recipe-preview-img';
 
-  var $recipeName = document.createElement('p');
+  const $recipeName = document.createElement('p');
   $recipeName.textContent = recipeObject.title;
   $recipeName.className = 'recipe-name';
 
-  var $recipeInfoButton = document.createElement('button');
+  const $recipeInfoButton = document.createElement('button');
   $recipeInfoButton.className = 'info-button text-white';
   $recipeInfoButton.textContent = 'READ MORE';
   $recipeInfoButton.setAttribute('recipe-id', recipeObject.id);
-
   $recipePreviewCard.append($recipeImage, $recipeName, $recipeInfoButton);
   $recipePreviewEntry.append($recipePreviewCard);
   return $recipePreviewEntry;
 }
 
 function recipeWindows(recipeObject) {
-  var $windowsDiv = document.createElement('div');
+  const $windowsDiv = document.createElement('div');
   $windowsDiv.className = 'windows-recipe-card row';
   $recipeCard.append($windowsDiv);
 
-  var $columnOne = document.createElement('div');
-  var $columnTwo = document.createElement('div');
+  const $columnOne = document.createElement('div');
+  const $columnTwo = document.createElement('div');
   $columnOne.className = 'column-half';
   $columnTwo.className = 'column-half';
 
   $windowsDiv.append($columnOne, $columnTwo);
 
-  var $recipeImage = document.createElement('img');
+  const $recipeImage = document.createElement('img');
   $recipeImage.className = 'recipe-card-img margin-bot-media';
   $recipeImage.src = recipe.image;
 
-  var $ingredientsBlock = document.createElement('div');
+  const $ingredientsBlock = document.createElement('div');
   $ingredientsBlock.className = 'margin-bot-thirty ingredients-block';
 
   $columnOne.append($recipeImage, $ingredientsBlock);
 
-  var $ingredientsTitle = document.createElement('p');
+  const $ingredientsTitle = document.createElement('p');
   $ingredientsTitle.className = 'divider-title margin-0';
   $ingredientsTitle.textContent = 'INGREDIENTS';
 
-  var $ingredientsDivider = document.createElement('div');
+  const $ingredientsDivider = document.createElement('div');
   $ingredientsDivider.className = 'divider margin-0';
 
-  var $ingredientsList = document.createElement('ul');
+  const $ingredientsList = document.createElement('ul');
   $ingredientsList.className = 'ingredients-list padding-bottom-15';
 
   $ingredientsBlock.append($ingredientsTitle, $ingredientsDivider, $ingredientsList);
 
-  for (var ingredientsIndex = 0; ingredientsIndex < recipe.extendedIngredients.length; ingredientsIndex++) {
-    var $ingredientItem = document.createElement('li');
+  for (let ingredientsIndex = 0; ingredientsIndex < recipe.extendedIngredients.length; ingredientsIndex++) {
+    const $ingredientItem = document.createElement('li');
     $ingredientItem.textContent = recipe.extendedIngredients[ingredientsIndex].original;
     $ingredientsList.append($ingredientItem);
   }
 
-  var $titleContainer = document.createElement('div');
+  const $titleContainer = document.createElement('div');
   $titleContainer.className = 'text-center title-container';
 
-  var $instructionsBlock = document.createElement('div');
+  const $instructionsBlock = document.createElement('div');
   $instructionsBlock.className = 'margin-bot-thirty instructions-block';
   $columnTwo.append($titleContainer, $instructionsBlock);
 
-  var $recipeTitle = document.createElement('p');
+  const $recipeTitle = document.createElement('p');
   $recipeTitle.className = 'recipe-title';
   $recipeTitle.textContent = recipe.title;
 
-  var $timeServe = document.createElement('div');
+  const $timeServe = document.createElement('div');
   $timeServe.className = 'row justify-around';
 
   $titleContainer.append($recipeTitle, $timeServe);
 
-  var $cookTime = document.createElement('p');
+  const $cookTime = document.createElement('p');
   $cookTime.textContent = 'Cook Time: ' + recipe.readyInMinutes + ' minutes';
 
-  var $servings = document.createElement('p');
+  const $servings = document.createElement('p');
   $servings.textContent = 'Servings: ' + recipe.servings;
 
   $timeServe.append($cookTime, $servings);
 
-  var $instructionsTitle = document.createElement('p');
+  const $instructionsTitle = document.createElement('p');
   $instructionsTitle.textContent = 'INSTRUCTIONS';
   $instructionsTitle.className = 'divider-title margin-0';
 
-  var $instructionsDivider = document.createElement('div');
+  const $instructionsDivider = document.createElement('div');
   $instructionsDivider.className = 'divider margin-0';
 
-  var $instructionsList = document.createElement('ul');
+  const $instructionsList = document.createElement('ul');
 
   $instructionsBlock.append($instructionsTitle, $instructionsDivider, $instructionsList);
 
-  for (var instructionsIndex = 0; instructionsIndex < recipe.analyzedInstructions[0].steps.length; instructionsIndex++) {
-    var $instructionItem = document.createElement('li');
+  for (let instructionsIndex = 0; instructionsIndex < recipe.analyzedInstructions[0].steps.length; instructionsIndex++) {
+    const $instructionItem = document.createElement('li');
     $instructionItem.textContent = recipe.analyzedInstructions[0].steps[instructionsIndex].step;
     $instructionsList.append($instructionItem);
   }
 }
 
 function recipeMobile() {
-  var $mediaDiv = document.createElement('div');
+  const $mediaDiv = document.createElement('div');
   $mediaDiv.className = 'media-recipe-card row flex-column';
   $recipeCard.append($mediaDiv);
 
-  var $recipeImage = document.createElement('img');
+  const $recipeImage = document.createElement('img');
   $recipeImage.className = 'margin-bot-media';
   $recipeImage.src = recipe.image;
 
-  var $titleContainer = document.createElement('div');
+  const $titleContainer = document.createElement('div');
   $titleContainer.className = 'text-center title-container';
 
-  var $recipeTitle = document.createElement('p');
+  const $recipeTitle = document.createElement('p');
   $recipeTitle.className = 'recipe-title';
   $recipeTitle.textContent = recipe.title;
 
-  var $timeServe = document.createElement('div');
+  const $timeServe = document.createElement('div');
   $timeServe.className = 'row justify-around';
 
   $titleContainer.append($recipeTitle, $timeServe);
 
-  var $cookTime = document.createElement('p');
+  const $cookTime = document.createElement('p');
   $cookTime.textContent = 'Cook Time: ' + recipe.readyInMinutes + ' minutes';
 
-  var $servings = document.createElement('p');
+  const $servings = document.createElement('p');
   $servings.textContent = 'Servings: ' + recipe.servings;
 
   $timeServe.append($cookTime, $servings);
 
-  var $ingredientsBlock = document.createElement('div');
+  const $ingredientsBlock = document.createElement('div');
   $ingredientsBlock.className = 'ingredients-block';
 
-  var $ingredientsTitle = document.createElement('p');
+  const $ingredientsTitle = document.createElement('p');
   $ingredientsTitle.className = 'divider-title margin-0';
   $ingredientsTitle.textContent = 'INGREDIENTS';
 
-  var $ingredientsDivider = document.createElement('div');
+  const $ingredientsDivider = document.createElement('div');
   $ingredientsDivider.className = 'divider margin-0';
 
-  var $ingredientsList = document.createElement('ul');
+  const $ingredientsList = document.createElement('ul');
   $ingredientsList.className = 'ingredients-list padding-bottom-15';
 
   $ingredientsBlock.append($ingredientsTitle, $ingredientsDivider, $ingredientsList);
 
-  for (var ingredientsIndex = 0; ingredientsIndex < recipe.extendedIngredients.length; ingredientsIndex++) {
-    var $ingredientItem = document.createElement('li');
+  for (let ingredientsIndex = 0; ingredientsIndex < recipe.extendedIngredients.length; ingredientsIndex++) {
+    const $ingredientItem = document.createElement('li');
     $ingredientItem.textContent = recipe.extendedIngredients[ingredientsIndex].original;
     $ingredientsList.append($ingredientItem);
   }
 
-  var $instructionsBlock = document.createElement('div');
+  const $instructionsBlock = document.createElement('div');
   $instructionsBlock.className = 'margin-bot-thirty instructions-block';
 
-  var $instructionsTitle = document.createElement('p');
+  const $instructionsTitle = document.createElement('p');
   $instructionsTitle.textContent = 'INSTRUCTIONS';
   $instructionsTitle.className = 'divider-title margin-0';
 
-  var $instructionsDivider = document.createElement('div');
+  const $instructionsDivider = document.createElement('div');
   $instructionsDivider.className = 'divider margin-0';
 
-  var $instructionsList = document.createElement('ul');
+  const $instructionsList = document.createElement('ul');
   $instructionsList.className = 'instructions-list';
 
   $instructionsBlock.append($instructionsTitle, $instructionsDivider, $instructionsList);
 
-  for (var instructionsIndex = 0; instructionsIndex < recipe.analyzedInstructions[0].steps.length; instructionsIndex++) {
-    var $instructionItem = document.createElement('li');
+  for (let instructionsIndex = 0; instructionsIndex < recipe.analyzedInstructions[0].steps.length; instructionsIndex++) {
+    const $instructionItem = document.createElement('li');
     $instructionItem.textContent = recipe.analyzedInstructions[0].steps[instructionsIndex].step;
     $instructionsList.append($instructionItem);
   }
-  var $buttonDiv = document.createElement('div');
+  const $buttonDiv = document.createElement('div');
   $buttonDiv.className = 'row flex-button';
 
-  var $backButton = document.createElement('button');
+  const $backButton = document.createElement('button');
   $backButton.textContent = 'BACK';
   $backButton.className = 'text-white back-button margin-bot-media flex-button';
 
@@ -344,23 +343,23 @@ function recipeMobile() {
 function serverRequest() {
   $modal.classList.remove('hidden');
   $loader.classList.remove('hidden');
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.spoonacular.com/recipes/complexSearch?includeIngredients=' + query + '&number=10&ranking=1&ignorePantry=true&apiKey=' + apiKey + '&instructionsRequired=true&addRecipeInformation=true');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     $loader.classList.add('hidden');
     query = xhr.response;
     query = query.results;
-    var counter = 0;
-    var checkedEntries = [];
-    for (var queryIndex = 0; queryIndex < query.length; queryIndex++) {
+    let counter = 0;
+    const checkedEntries = [];
+    for (let queryIndex = 0; queryIndex < query.length; queryIndex++) {
       if (query[queryIndex].analyzedInstructions.length !== 0 && query[queryIndex].image !== undefined) {
         checkedEntries.push(queryIndex);
       }
     }
-    for (var i = 0; i < checkedEntries.length; i++) {
+    for (let i = 0; i < checkedEntries.length; i++) {
       if (query[checkedEntries[i]].analyzedInstructions[0].steps.length !== 0) {
-        branch = recipePreview(query[checkedEntries[i]]);
+        const branch = recipePreview(query[checkedEntries[i]]);
         $searchRecipeContainer.append(branch);
         counter++;
       }
@@ -384,14 +383,14 @@ function serverRequest() {
 function recipeRequest() {
   $modal.classList.remove('hidden');
   $loader.classList.remove('hidden');
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.spoonacular.com/recipes/' + recipeId + '/information?apiKey=' + apiKey);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     recipe = xhr.response;
     $modal.classList.add('hidden');
     $loader.classList.add('hidden');
-    for (var i = 0; i < query.length; i++) {
+    for (let i = 0; i < query.length; i++) {
       if (recipe.id === query[i].id) {
         if (recipe.image === undefined) {
           recipe.image = query[i].image;
