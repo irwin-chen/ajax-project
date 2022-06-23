@@ -268,6 +268,7 @@ a {
   width: 300px;
   border-radius: 5px;
   background-color: white;
+  padding: 1rem 0;
 }
 
 @keyframes lds-ring {
@@ -313,16 +314,12 @@ a {
 /* tablet view */
 
 @media only screen and (min-width: 768px) {
-  .hero-img {
-    max-height: 200px;
-  }
-
   .margin-bot-media {
     margin-bottom: 1rem;
   }
 
   .recipe-preview-img {
-    height: 200px;
+    max-height: 200px;
   }
 }
 
